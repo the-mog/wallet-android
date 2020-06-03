@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/info_container_view"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <com.tari.android.wallet.ui.component.CustomFontTextView
+            android:id="@+id/info_text_view"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="8dp"
+            android:layout_marginHorizontal="@dimen/common_horizontal_margin"
+            android:text="@string/debug_emoji_id_test_click_to_copy"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:customFont="AVENIR_NEXT_LT_PRO_REGULAR" />
+    </FrameLayout>
+
+    <!-- list -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_below="@id/info_container_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:overScrollMode="never"
+        android:scrollbars="vertical" />
+
+    <!-- text view container elevation-->
+    <View
+        android:id="@+id/top_elevation_view"
+        android:layout_below="@id/info_container_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_scroll_height_gradient_height"
+        android:alpha="0.4"
+        android:background="@drawable/view_elevation_gradient" />
+</RelativeLayout>

@@ -231,6 +231,7 @@
 
     <!-- debug screens -->
     <!-- logs -->
+    <string name="debug_emoji_ids_title">Emoji IDs</string>
     <string name="debug_log_files_title">Logs</string>
     <string name="debug_log_share_dialog_title">Share</string>
     <string name="debug_log_share_dialog_content">Please confirm to compress and e-mail your last two FFI log files.</string>
@@ -252,5 +253,12 @@
     <!-- In-app store -->
     <string name="store_title">Tari Testnet Store</string>
     <string name="store_no_application_to_open_the_link_error">Seems that there are no applications to handle link sharing.</string>
+
+    <!-- emoji id test -->
+    <string name="debug_emoji_id_test_click_to_copy">ℹ️ Click on an Emoji ID to copy.</string>
+    <string name="debug_emoji_id_test_emoji_id_copied">🔎️ Emoji ID copied. Please leave the app and change clipboard data.</string>
+    <string name="debug_emoji_id_test_no_emoji_id_in_clipboard">❌️ No Emoji ID found in the clipboard.</string>
+    <string name="debug_emoji_id_test_emoji_id_not_in_list">❌️ Emoji ID in the clipboard does not match any of the below.</string>
+    <string name="debug_emoji_id_test_emoji_id_matches">✅️ Emoji ID matches.</string>
 
 </resources>

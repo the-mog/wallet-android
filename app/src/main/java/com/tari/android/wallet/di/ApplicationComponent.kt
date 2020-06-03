@@ -46,6 +46,7 @@ import com.tari.android.wallet.ui.activity.send.SendTariActivity
 import com.tari.android.wallet.ui.activity.tx.TxDetailActivity
 import com.tari.android.wallet.ui.fragment.debug.BaseNodeConfigFragment
 import com.tari.android.wallet.ui.fragment.debug.DebugLogFragment
+import com.tari.android.wallet.ui.fragment.debug.EmojiIdTestFragment
 import com.tari.android.wallet.ui.fragment.onboarding.CreateWalletFragment
 import com.tari.android.wallet.ui.fragment.onboarding.IntroductionFragment
 import com.tari.android.wallet.ui.fragment.onboarding.LocalAuthFragment
@@ -106,6 +107,7 @@ internal interface ApplicationComponent {
     fun inject(fragment: LocalAuthFragment)
     fun inject(fragment: DebugLogFragment)
     fun inject(fragment: BaseNodeConfigFragment)
+    fun inject(fragment: EmojiIdTestFragment)
 
     /**
      * Service(s).

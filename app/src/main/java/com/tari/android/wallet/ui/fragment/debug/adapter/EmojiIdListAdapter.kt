@@ -30,38 +30,67 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.tari.android.wallet.ui.activity.debug.adapter
+package com.tari.android.wallet.ui.fragment.debug.adapter
 
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.tari.android.wallet.ui.fragment.debug.BaseNodeConfigFragment
-import com.tari.android.wallet.ui.fragment.debug.DebugLogFragment
-import com.tari.android.wallet.ui.fragment.debug.EmojiIdTestFragment
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.tari.android.wallet.R
+import java.lang.ref.WeakReference
 
 /**
- * Fragment pager adapter for debug activity.
+ * Displays the list of emoji ids.
  *
  * @author The Tari Development Team
  */
-internal class DebugViewPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
+internal class EmojiIdListAdapter(private val emojiIds: List<String>, listener: Listener) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>(),
+    EmojiIdViewHolder.Listener {
+
+    private val listenerWeakReference = WeakReference(listener)
+
+    var matchedIndex = -1
 
     /**
-     * Logs and base node configuration.
+     * Item count.
      */
-    private val numberOfItems = 3
+    override fun getItemCount() = emojiIds.size
 
-    override fun getItemCount(): Int {
-        return numberOfItems
+    /**
+     * Create the view holder instance.
+     */
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): RecyclerView.ViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(
+            R.layout.emoji_id_list_item,
+            parent,
+            false
+        )
+        return EmojiIdViewHolder(view, this)
     }
 
-    override fun createFragment(position: Int): Fragment {
-        return when (position) {
-            0 -> EmojiIdTestFragment()
-            1 -> DebugLogFragment()
-            2 -> BaseNodeConfigFragment()
-            else -> throw RuntimeException("Unexpected page position: $position")
-        }
+    /**
+     * Bind & display header or transaction.
+     */
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        (holder as EmojiIdViewHolder).bind(
+            position,
+            emojiIds[position],
+            matchedIndex == position,
+            position == (emojiIds.size - 1)
+        )
+    }
+
+    override fun emojiIdCopied(emojiId: String) {
+        listenerWeakReference.get()?.emojiIdCopied(emojiId)
+    }
+
+    interface Listener {
+
+        fun emojiIdCopied(emojiId: String)
+
     }
 
 }
